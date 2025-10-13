@@ -1,0 +1,21 @@
+.bttn{
+    padding: 10px 25px ;
+    height: max-content ;
+    color: white ;
+    border-radius: 15px ;
+    border: none ;
+    font-size: 16px ;
+    font-weight: 600;
+    margin: 8px 5px ;
+    cursor: pointer ;
+    transition: all 0.3s ease ;
+    background-color: blue;
+}
+.bttn:not(:disabled):hover{
+    background-color: navy;
+}
+.bttn:disabled {
+  background-color: gray;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
