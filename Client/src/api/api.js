@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const API = axios.create({
-    baseURL: "http://localhost:8000/api/"
+    baseURL: "https://image-generator-eight-wine.vercel.app/api/"
 })
 
 export const getPosts = async () => await API.get('/post/') ;
