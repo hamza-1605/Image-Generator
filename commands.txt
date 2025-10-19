@@ -1,6 +1,9 @@
 frontend terminal script:
     npm install @emotion/react @emotion/styled @mui/icons-material @mui/lab @mui/material axios file-saver react-lazy-load-image-component react-router-dom styled-components
 
+    npm install @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-regular-svg-icons @fortawesome/free-brands-svg-icons
+
+
 backend terminal script:
     npm i mongoose express cors dotenv nodemon cloudinary
 

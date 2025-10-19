@@ -1,7 +1,8 @@
-import React from 'react'
 import styled from 'styled-components'
 import Button from './Button'
 import { useNavigate, useLocation} from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEarthAmericas, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const Container = styled.div`
     flex:1;
@@ -22,8 +23,8 @@ const Navbar = () => {
         <Container>
             GEN AI
                 {path[1] === 'post' 
-                ? <Button onClick={ () => navigate('/') } text="Explore Posts" leftIcon="🌐" /> 
-                :  <Button onClick={ () => navigate('/post') } text="Create a Post" leftIcon="+" /> }
+                ? <Button onClick={ () => navigate('/') } text="Explore Posts" leftIcon=<FontAwesomeIcon icon={faEarthAmericas}/>  />
+                :  <Button onClick={ () => navigate('/post') } text="Create a Post" leftIcon=<FontAwesomeIcon icon={faPlus} /> /> }
         </Container>
     </div>
   )

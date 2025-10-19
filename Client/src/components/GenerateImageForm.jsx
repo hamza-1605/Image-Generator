@@ -1,11 +1,14 @@
-import React from 'react'
-import InputBox from './InputBox'
-import Button from './Button'
-import styled from 'styled-components'
-// import {AutoAwesome} from '@mui/icons-material'
-import { createPost, generateImage } from '../api/api.js'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
+import Button from './Button'
+import styled from 'styled-components'
+import InputBox from './InputBox'
+
+import { createPost, generateImage } from '../api/api.js'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPenToSquare, faWandMagicSparkles } from "@fortawesome/free-solid-svg-icons";
 
 const Form = styled.div`
     flex: 1;
@@ -145,7 +148,7 @@ const GenerateImageForm = ({
         <Actions>
             <Button 
                 text="Generate Image" 
-                leftIcon="✨"
+                leftIcon=<FontAwesomeIcon icon={faWandMagicSparkles} />
                 isDisabled={ 
                     post?.prompt.trim() === "" 
                 }
@@ -156,7 +159,7 @@ const GenerateImageForm = ({
             />
             <Button 
                 text="Post Image" 
-                leftIcon="🖊"
+                leftIcon= < FontAwesomeIcon icon={faPenToSquare} />
                 isDisabled={ 
                     post.prompt.trim() === "" || 
                     post.author.trim() === "" ||
