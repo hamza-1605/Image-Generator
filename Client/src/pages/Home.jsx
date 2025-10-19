@@ -20,6 +20,7 @@ const Headline = styled.div`
     align-items: center;
     gap: 6px;
     font-size: 22px;
+    text-align: center;
 
     @media(max-width: 600px){
         font-size: 18px;
@@ -36,7 +37,7 @@ const CoolSpan = styled.span`
 `
 const Wrapper = styled.div`
     width: 100%;
-    max-width: 1410px;
+    max-width: 1210px;
     padding: 20px 0;
     display: flex;
     justify-content: center;
@@ -107,7 +108,7 @@ const Home = () => {
   return (
     <Container>
         <Headline>
-            Explore the popular posts in the community!
+            Create or Explore the popular posts in the community!
             <CoolSpan>🤖 Generated with AI 🤖</CoolSpan>
         </Headline>
         <SearchBar search={search} setSearch={setSearch} />
@@ -120,7 +121,8 @@ const Home = () => {
                 ?
                   <CircularProgress size={50}/>
                 :   
-                    filteredPosts.length!==0 ?   
+                    filteredPosts.length!==0 
+                    ?   
                         filteredPosts.slice()
                         .reverse()
                         .map( (post) => 

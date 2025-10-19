@@ -12,7 +12,7 @@ import { faPenToSquare, faWandMagicSparkles } from "@fortawesome/free-solid-svg-
 
 const Form = styled.div`
     flex: 1;
-    padding: 5px 15px;
+    padding: 0px 15px 25px 15px;
     display: flex;
     flex-direction: column;
     gap: 40px;
