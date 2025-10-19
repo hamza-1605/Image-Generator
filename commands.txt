@@ -10,11 +10,11 @@ backend terminal script:
 
 
 
---- Icons change
+--- Icons change ✅
 
---- Pull .env
+--- Pull .env ✅
 
---- Configure Mongo Atlas
+--- Configure Mongo Atlas ✅
 
 --- Deploy Project 
                      Netlify   &&   Render
