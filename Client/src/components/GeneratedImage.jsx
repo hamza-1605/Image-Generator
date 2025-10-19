@@ -26,6 +26,7 @@ const Image = styled.img`
 const InsideText = styled.p`
   font-size: 14px;
   color: teal;
+  text-align: center;
 `
 
 const GeneratedImage = ({src, loading}) => {
