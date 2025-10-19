@@ -2,7 +2,10 @@ import React from 'react'
 import InputBox from './InputBox'
 import Button from './Button'
 import styled from 'styled-components'
-import {AutoAwesome} from '@mui/icons-material'
+// import {AutoAwesome} from '@mui/icons-material'
+import { createPost, generateImage } from '../api/api.js'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Form = styled.div`
     flex: 1;
@@ -51,22 +54,58 @@ const GenerateImageForm = ({
     createPostLoading,
     setCreatePostLoading,
 }) => {
+    const navigate = useNavigate();
+    const [error, setError] = useState(null);
+
 
     const handleOnChange = (e) => {
         setPost({...post, [e.target.name] : e.target.value});
     }
     
-    const generateImageFunction = () => {
-        setGeneratedImageLoading(true);
+
+    const generateImageFunction = async () => {  
+        try {
+            setGeneratedImageLoading(true);
+            
+            const response = await generateImage({ prompt: post.prompt });
+            console.log(response);
+            setPost({
+                ...post,
+                photo: response?.data?.image
+            });
+            
+            setGeneratedImageLoading(false);
+            setError(null);
+        } 
+        catch (error) {
+            console.log("***************ERROR while generating image by frontend*************" + error);
+            setError(error);
+            setGeneratedImageLoading(false);
+        }
     }
 
-    const createPostFunction = () => {
 
-        setPost({
-            author: "",
-            photo: "",
-            prompt: "",
-        });
+    const createPostFunction = async () => {
+        try {
+            setCreatePostLoading(true);
+            
+            await createPost( post );
+            
+            setCreatePostLoading(false);
+            setError(null);
+            navigate('/');
+            
+            setPost({
+                author: "",
+                photo: "",
+                prompt: "",
+            });
+        } 
+        catch (error) {
+            console.log("***************ERROR while creating post by frontend*************" + error);
+            setError(error);
+            setCreatePostLoading(false);
+        }
     }
 
   return (
@@ -83,6 +122,7 @@ const GenerateImageForm = ({
                 name="author"
                 value={post.author}
                 onChange={handleOnChange}
+                max={18}
             />
             <InputBox 
                 type="textarea"
@@ -99,6 +139,7 @@ const GenerateImageForm = ({
                 color: 'whitesmoke',
             }}>
                 *You can post AI generated image to the community.*
+                { error && <div style={{color: 'red'}}>{error.message}</div>}
             </p>
         </Body>
         <Actions>

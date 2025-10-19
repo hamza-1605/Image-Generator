@@ -2,4 +2,16 @@ frontend terminal script:
     npm install @emotion/react @emotion/styled @mui/icons-material @mui/lab @mui/material axios file-saver react-lazy-load-image-component react-router-dom styled-components
 
 backend terminal script:
-    npm i mongoose express cors openai dotenv nodemon cloudinary
+    npm i mongoose express cors dotenv nodemon cloudinary
+
+
+
+
+--- Icons change
+
+--- Pull .env
+
+--- Configure Mongo Atlas
+
+--- Deploy Project 
+                     Netlify   &&   Render

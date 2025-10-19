@@ -24,7 +24,7 @@ export const generateImage = async (req, res) => {
         res.status(200).json({
             success: true,
             message: "Image generated successfully!",
-            photo:  `data:image/png;base64,${base64Image}`
+            image:  `data:image/png;base64,${base64Image}`
         });
     } 
     catch (error) {

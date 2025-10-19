@@ -16,11 +16,11 @@ const Container = styled.div`
   gap: 5px;
   color: gray;
 `
-const Image = styled.image`
+const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: contain;
-  background-color: yellow;
+  background-color: black;
   border-radius: 20px
 `
 const InsideText = styled.p`

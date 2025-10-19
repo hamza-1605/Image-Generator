@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import SearchBar from '../components/SearchBar'
 import ImageCard from '../components/ImageCard'
+import {getPosts} from '../api/api.js'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const Container = styled.div`
     height: 100%;
@@ -55,29 +57,77 @@ const CardWrapper = styled.div`
 `
 
 const Home = () => {
-    const item = {
-        photo: "https://images.wallpaperscraft.com/image/single/silhouettes_love_tree_128864_320x240.jpg",
-        author: "Hamza",
-        prompt: "Night sky with tree"
+    const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [search, setSearch] = useState("");
+    const [filteredPosts, setFilteredPosts] = useState([]);
+
+    
+    const loadPosts = async () => {
+        try {
+            setLoading(true);
+            const response = await getPosts();
+            setPosts( response.data.data );
+            setFilteredPosts( response.data.data );
+            setLoading(false);       
+        } 
+        catch (error) {
+            setError(error);    
+            setLoading(false);       
+        }
     }
+
+
+    useEffect(() => {
+      loadPosts();
+    }, [])
+    
+
+    // search useEffect
+    useEffect(() => {
+        if (!search) {
+            setFilteredPosts( posts );
+            return;
+        }
+
+        const searchFilteredPosts = posts.filter( (post) => {
+            const promptMatch = post?.prompt?.toLowerCase().includes( search.toString().toLowerCase() ) ;
+            const authorMatch = post?.author?.toLowerCase().includes( search.toString().toLowerCase() ) ;
+
+            return promptMatch || authorMatch ;
+        })
+        
+        if (search) {
+            setFilteredPosts( searchFilteredPosts );
+        }
+    }, [posts, search])
+
+
   return (
     <Container>
         <Headline>
             Explore the popular posts in the community!
             <CoolSpan>🤖 Generated with AI 🤖</CoolSpan>
         </Headline>
-        <SearchBar />
+        <SearchBar search={search} setSearch={setSearch} />
 
         <Wrapper>
-            <CardWrapper>
-                <ImageCard item={item}/>
-                <ImageCard item={item}/>
-                <ImageCard item={item}/>
-                <ImageCard item={item}/>
-                <ImageCard item={item}/>
-                <ImageCard item={item}/>
-                <ImageCard item={item}/>
-                <ImageCard item={item}/>
+            <CardWrapper> 
+                { error && <div style={{color: 'red'}}>{error.message}</div> }
+                {
+                loading 
+                ?
+                  <CircularProgress size={50}/>
+                :   
+                    filteredPosts.length!==0 ?   
+                        filteredPosts.slice()
+                        .reverse()
+                        .map( (post) => 
+                                <ImageCard item={post} />
+                        )
+                    : <div>No posts found</div>
+                }
             </CardWrapper>
         </Wrapper>
     </Container>

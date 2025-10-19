@@ -14,7 +14,7 @@ const SearchBarContainer = styled.div`
     border-radius: 10px;
 `
 
-const SearchBar = () => {
+const SearchBar = ({ search, setSearch }) => {
   return (
     <SearchBarContainer>
         
@@ -27,7 +27,10 @@ const SearchBar = () => {
             color: 'whitesmoke',
             width: '100%',
             fontSize: '15px'
-        }}/>
+        }}
+        value={search}
+        onChange={ (e) => setSearch(e.target.value) }
+        />
     
     </SearchBarContainer>
   )

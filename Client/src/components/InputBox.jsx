@@ -1,7 +1,7 @@
 import React from 'react'
 
 const InputBox = (props) => {
-    const {type, text, placeholder, name, value, onChange} = props;
+    const {type, text, placeholder, name, value, onChange, max} = props;
   return (
     <>
       <p style={{fontWeight: '500' , color: 'gray'}}>{text}</p>
@@ -45,6 +45,7 @@ const InputBox = (props) => {
           name={name}
           value={value}
           onChange={onChange}
+          maxLength={max}
         />
       )}
     </>
