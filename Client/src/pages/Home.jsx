@@ -108,7 +108,7 @@ const Home = () => {
   return (
     <Container>
         <Headline>
-            Create or Explore the popular posts in the community!
+            Explore the popular posts in the community!
             <CoolSpan>🤖 Generated with AI 🤖</CoolSpan>
         </Headline>
         <SearchBar search={search} setSearch={setSearch} />
